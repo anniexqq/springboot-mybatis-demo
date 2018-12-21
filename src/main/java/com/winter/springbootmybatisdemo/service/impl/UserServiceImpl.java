@@ -40,17 +40,4 @@ public class UserServiceImpl extends BaseServiceImpl<User,Integer,UserMapper> im
         return mapper.selectByPrimaryKey(id);
     }
 
-    @Override
-    public String checkLogin(User user){
-       User get_user =  mapper.selectByNameAndPass(user);
-   //    int userId = 0;
-
-    //   userId = get_user.getUserId();
-       if(get_user != null){
-           return "1";//登录成功
-       }else{
-           return "0";//登录失败
-       }
-    }
-
 }

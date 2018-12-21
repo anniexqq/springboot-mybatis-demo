@@ -11,6 +11,4 @@ public interface UserService extends BaseService<User,Integer,UserMapper> {
 
     User findById(Integer id);
 
-    String checkLogin(User user);
-
 }
