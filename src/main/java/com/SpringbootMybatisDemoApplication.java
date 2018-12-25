@@ -76,7 +76,7 @@ public class SpringbootMybatisDemoApplication {
 		return factory;
 	}
 
-	//法2：另一种更少代码的零配置写法。注意：需要将上面的全部注释，其次要将application.yml文件，添加activemq的地址、用户名密码
+	//法2：另一种更少代码的零配置写法。注意：需要将上面的全部注释，其次要在application.yml文件，添加activemq的地址、用户名密码
 	/*@Bean
 	public Queue textMsgDestination() {
 		return new ActiveMQQueue("LISTENER_TEXT_MSG");

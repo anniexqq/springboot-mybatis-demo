@@ -48,7 +48,6 @@ spring:
   #              enabled: false
   #              # 最大连接数
   #              maxConnections: 100
-  #
   #          packages:
   #                  # 信任所有的包
   #              trust-all: true
