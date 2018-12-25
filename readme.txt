@@ -6,6 +6,7 @@ mm/1234
 （2）权限控制(程序注解、HTML页面注解的方法 和 perms[index:view] 方法)
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 2.
+ 双击 E:\Program Files\apache-activemq-5.15.4\bin\win64\activemq.bat 文件，启动ActivemqMQ
  ActiveMQ （点对点）消息模式 （ http://localhost:8081/msg/sendMsg ）
  ActiveMQ （发布/订阅）消息模式 （ http://localhost:8081/msg/pubSubMsg ）
 
