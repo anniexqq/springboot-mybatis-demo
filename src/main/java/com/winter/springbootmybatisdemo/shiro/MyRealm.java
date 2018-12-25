@@ -20,6 +20,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -32,6 +33,7 @@ public class MyRealm extends AuthorizingRealm {
     private Logger logger = LogManager.getLogger(MyRealm.class);
 
     @Autowired
+    @Lazy      //解决@Cacheable注解失效。因为shiro初始化的早，里面用到的bean都会在cache初始化之前被初始化，需要为shiro使用到的bean加@Lazy
     private UserService userService;
 
     @Autowired

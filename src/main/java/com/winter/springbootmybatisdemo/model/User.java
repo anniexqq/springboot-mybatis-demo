@@ -1,9 +1,10 @@
 package com.winter.springbootmybatisdemo.model;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     private Integer userId;
 
     private String userName;

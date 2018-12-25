@@ -57,3 +57,11 @@ post地址：http://localhost:8081/msg/addUser
   密码的设置推荐使用配置文件修改的方式，redis.windows.conf文件，添加：
 # requirepass foobared
   requirepass 1234  //此处注意，行前不能有空格
+
+9.@Cacheable注解 整合Redis
+  postman调用：   http://localhost:8081/user/all?pageNum=1&pageSize=5
+  调用一次查询后，可在redis控制台执行：keys * ，看存储的key
+
+  注意事项：
+            1.@EnableCaching 开启注解
+            2.Shiro初始化时用到的MyRealm中，UserService注入加入懒加载注解@Lazy，用来防止@Cacheable注解失效

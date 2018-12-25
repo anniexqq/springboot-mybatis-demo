@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -21,7 +22,7 @@ public class UserController {
 
     //http://localhost:8081/user/all?pageNum=1&pageSize=5
     @PostMapping(value = "/all")
-    public Object findAllUser(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize){
+    public List<User> findAllUser(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize){
         return userService.findAllUser(pageNum,pageSize);
     }
 
