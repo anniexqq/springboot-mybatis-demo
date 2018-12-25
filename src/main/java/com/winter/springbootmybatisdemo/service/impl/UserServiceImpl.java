@@ -1,5 +1,7 @@
 package com.winter.springbootmybatisdemo.service.impl;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.winter.springbootmybatisdemo.dto.BootstrapTableResDTO;
 import com.winter.springbootmybatisdemo.mapper.UserMapper;
 import com.winter.springbootmybatisdemo.model.User;
 import com.winter.springbootmybatisdemo.service.UserService;
@@ -33,11 +35,16 @@ public class UserServiceImpl extends BaseServiceImpl<User,Integer,UserMapper> im
      * */
     @Override
     @Cacheable(value="allUsers", key = "targetClass + methodName +#p0")
-    public List<User> findAllUser(int pageNum, int pageSize) {
+    public BootstrapTableResDTO<User> findAllUser(int pageNum, int pageSize) {
         System.out.println("------进入findAllUser()------查询数据库");
-        //将参数传给这个方法就可以实现物理分页了，非常简单。
+        //将参数传给这个方法就可以实现物理分页了，非常简单
         PageHelper.startPage(pageNum, pageSize);
-        return mapper.selectAllUser();
+        List<User> userDTOS = mapper.selectAllUser();
+        PageInfo<User> page = new PageInfo<>(userDTOS);
+        BootstrapTableResDTO<User> resDTO = new BootstrapTableResDTO<>();
+        resDTO.setTotal(page.getTotal());
+        resDTO.setRows(userDTOS);
+        return resDTO;
     }
 
 }
