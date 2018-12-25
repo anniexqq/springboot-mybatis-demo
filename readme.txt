@@ -1,4 +1,4 @@
-Springboot + Mybatis(TK mybatis)+ ActiveMQ（springboot零配置）
+Springboot + Mybatis(TK mybatis)+ ActiveMQ（springboot零配置）+ shiro+ redis
 
 1.Bootstrap登录功能（http://localhost:8081）
 mm/1234
@@ -40,3 +40,19 @@ post地址：http://localhost:8081/msg/addUser
 
  7.--------------------------------------------------------404错误---------------------------------------------------------------------------------------------------
  在resource/templates/error下添加error.html页面(error替换成对应的错误码，404、401、500等，还可以用4xx、5xx等)，springBoot会自动找到该页面作为错误页面，适合内嵌Tomcat或者war方式。
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+ 8.redis
+ （1）启动：
+  在E:\Program Files\Redis-3.2.100
+  执行命令：./redis-server.exe ./redis.windows.conf，启动redis
+
+ （2）redis控制台与密码设置：
+  再开一个控制台，执行命令：
+  redis-cli.exe -h 127.0.0.1 -p 6379 -a 1234
+  config get requirepass //获取当前密码
+  config set requirepass "1234"//设置当前密码,服务重新启动后又会置为默认，即无密码；不建议此种方式
+
+  密码的设置推荐使用配置文件修改的方式，redis.windows.conf文件，添加：
+# requirepass foobared
+  requirepass 1234  //此处注意，行前不能有空格

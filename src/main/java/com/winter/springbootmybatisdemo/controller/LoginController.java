@@ -1,8 +1,9 @@
 package com.winter.springbootmybatisdemo.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.winter.springbootmybatisdemo.model.User;
-import com.winter.springbootmybatisdemo.service.UserService;
+import com.winter.springbootmybatisdemo.redis.RedisService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -22,7 +23,7 @@ public class LoginController {
     private Logger logger = LogManager.getLogger(LoginController.class);
 
     @Autowired
-    private UserService userService;
+    private RedisService redisService;
 
 /*
    @RequestMapping("/loginPage")
@@ -46,6 +47,12 @@ public class LoginController {
                 user.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try {
+            //在shiro登录验证时，已将用户信息加入到redis，此处取出来看看，主要是测redis
+            String result = redisService.get("sys_user");
+            User redis_user = JSONObject.parseObject(result, User.class);
+            System.out.println("从redis中取出来的user："+JSONObject.toJSONString(redis_user));
+
+            //登录验证
             subject.login(token);
         } catch (AuthenticationException e) {
             logger.info("登录失败!!!{}", JSON.toJSONString(user));

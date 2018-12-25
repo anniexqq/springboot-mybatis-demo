@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-/**
- * Created by Administrator on 2017/8/16.
- */
+
 @Service(value = "userService")
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<User,Integer,UserMapper> implements UserService {
@@ -34,10 +32,6 @@ public class UserServiceImpl extends BaseServiceImpl<User,Integer,UserMapper> im
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
         return mapper.selectAllUser();
-    }
-    @Override
-    public User findById(Integer id){
-        return mapper.selectByPrimaryKey(id);
     }
 
 }

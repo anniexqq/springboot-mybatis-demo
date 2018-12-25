@@ -15,13 +15,6 @@
   <select id="selectAllUser" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from t_user
-  </select>
-  <!--登录验证用户名和密码-->
-  <select id="selectByNameAndPass" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from t_user
-    where user_name=#{userName} AND password=#{password}
+    from user
   </select>
 </mapper>

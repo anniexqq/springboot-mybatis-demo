@@ -52,6 +52,16 @@ spring:
   #          packages:
   #                  # 信任所有的包
   #              trust-all: true
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 1234
+      database:  0
+      pool:
+        max-active: 100
+        max-idle: 10
+        max-wait: 100000
+        timeout: 0
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.winter.springbootmybatisdemo.model

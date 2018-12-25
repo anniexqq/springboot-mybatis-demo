@@ -82,6 +82,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/msg/sendMsg", "anon");
         filterChainDefinitionMap.put("/msg/pubSubMsg", "anon");
         filterChainDefinitionMap.put("/msg/addUser", "anon");
+        filterChainDefinitionMap.put("/user/*", "anon");
 
         /* 解说：
         filterChainDefinitionMap.put(“/add”, “perms[权限添加]”);------>>> 访问/add这个链接必须要有“权限添加”这个权限才可以访问，

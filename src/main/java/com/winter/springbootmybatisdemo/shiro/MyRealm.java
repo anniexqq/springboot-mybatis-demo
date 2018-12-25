@@ -1,6 +1,8 @@
 package com.winter.springbootmybatisdemo.shiro;
 
+import com.alibaba.fastjson.JSONObject;
 import com.winter.springbootmybatisdemo.model.User;
+import com.winter.springbootmybatisdemo.redis.RedisService;
 import com.winter.springbootmybatisdemo.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +34,9 @@ public class MyRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RedisService redisService;
+
     @Resource(name = "adminCredentialsMatcher")
     @Override
     public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
@@ -54,8 +59,10 @@ public class MyRealm extends AuthorizingRealm {
                 logger.error("登录失败,用户不存在!!");
                 throw new AuthenticationException();
             }
-            String salt = sysUser.getSalt();//数据库中存的盐
+            //将用户信息存入redis，在LoginController中取出来看看，主要是测redis
+            redisService.set("sys_user", JSONObject.toJSONString(sysUser));
 
+            String salt = sysUser.getSalt();//数据库中存的盐
             return new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(),
                     ByteSource.Util.bytes(salt), getName());
         } catch (Exception e) {
