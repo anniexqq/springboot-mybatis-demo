@@ -1,18 +1,19 @@
 package com.winter.springbootmybatisdemo.model;
 
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Table(name = "user")
 public class User implements Serializable {
     private Integer userId;
-
+    @NotNull
     private String userName;
-
+    @NotNull
     private String password;
 
     private String salt;
-
+    @NotNull
     private String phone;
 
     public Integer getUserId() {
